@@ -2,7 +2,7 @@ package br.com.aulas.restapi.Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aulas.restapi.Models.Person;
+import br.com.aulas.restapi.Data.Vo.PersonVO;
 import br.com.aulas.restapi.Services.PersonServices;
 
 import java.util.List;
@@ -17,10 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
-
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -30,22 +26,22 @@ public class PersonController {
 
 
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id")Long id) throws Exception{
+    public PersonVO findById(@PathVariable(value = "id")Long id) throws Exception{
         return service.findById(id);
     }
 
     @GetMapping(value = "",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
     
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person creatPerson(@RequestBody Person person) {
+    public PersonVO creatPerson(@RequestBody PersonVO person) {
         return service.create(person);
     }
 
     @PutMapping(value = "", produces =  MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
+    public PersonVO update(@RequestBody PersonVO person) {
         return service.update(person);
     }
     
